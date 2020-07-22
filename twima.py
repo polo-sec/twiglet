@@ -29,7 +29,6 @@ class site:
         taglist = []
         data = self.scraper()
         sort_tags = re.compile(r"""(class="pos">)(.*?)(<\/a><\/td><td)""") 
-        
         clean_tags = re.compile(r"""(\/">)(.*?)($)""")
         tag_one = re.findall(sort_tags,data)
         for item in tag_one:
@@ -37,6 +36,10 @@ class site:
             taglist.append(clean[0][1])
         return taglist
 
-daytrends = site('https://getdaytrends.com/','Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0')
-print(daytrends.get_trending())
-print(daytrends.get_hashtags())
+#daytrends = site('https://getdaytrends.com/','Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0')
+
+#for item in daytrends.get_trending():
+#    print(item,'\n')
+#for item in daytrends.get_hashtags():
+#    print(item,'\n')
+
