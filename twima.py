@@ -35,7 +35,7 @@ class site:
             taglist.append(clean[0][1])
         return taglist
 
-class twima_ui:
+class twima_front:
 
     def __init__(self):
         pass
@@ -78,29 +78,24 @@ class twima_ui:
 
     def set_location(self,user_agent,url):
         headers = {'User-Agent': user_agent}
-        print("Please enter the country")
-        country = self.get_input()
-        country = country.replace(' ','-').lower()
-        print("Would you like to specify a city? [Y/N]")
-        city_choice = self.get_input()
-        if city_choice == "Y":
-            print("Please enter the City")
-            city = self.get_input()
-            city = city.replace(' ','-').lower()
-            response = requests.get(url+'/'+country+'/'+city,headers=headers)
-            print(response)
-        else: 
-            response = requests.get(url+'/'+country,headers=headers)
-            print(response)
-
-            
-
-
-
-#daytrends = site('https://getdaytrends.com/','Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0')
-
-#for item in daytrends.get_trending():
-#    print(item,'\n')
-#for item in daytrends.get_hashtags():
-#    print(item,'\n')
-
+        while True:
+            print("Please enter the country")
+            country = self.get_input().replace(' ','-').lower()
+            print("Would you like to specify a city? [Y/N]")
+            city_choice = self.get_input()
+            if city_choice == "Y":
+                print("Please enter the City")
+                city = self.get_input().replace(' ','-').lower()
+                geo_url = url+'/'+country+'/'+city
+                response = requests.get(geo_url,headers=headers)
+                if response.status_code == 404:
+                    print("I'm sorry, that location is not supported")
+                    pass
+                else: return geo_url
+            else:
+                geo_url = url+'/'+country
+                response = requests.get(geo_url,headers=headers)
+                if response.status_code == 404:
+                    print("I'm sorry, that location is not supported")
+                    pass
+                else: return geo_url 
