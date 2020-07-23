@@ -1,2 +1,4 @@
-# twima
-An Twitter scraper / manipulator that does not require API integration.
+# twiglet
+An API-Less Twitter Scraper 
+	
+
