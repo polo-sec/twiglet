@@ -10,3 +10,20 @@ This package assumes a Python3 environment, with requirements listed in the "req
 ```
 pip3 install -r requirements.txt
 ```
+## Components
+- **twiglet:** A manager class to help provide options for, and a basic CLI to, an instance of site. 
+- **site:** Gets tweet trending data from the selected source and reformats it.
+
+## Examples of python usage
+- Get trending topics and hashtags worldwide.
+``` python
+    user_agent = twiglet.set_user_agent()
+    source = twiglet.set_source()
+    site_data = site(source,user_agent)
+    
+    print("Trending Topics")
+    print(site_data.get_trending(),"\n")
+    print("Trending Hashtags")
+    print(site_data.get_hashtags(),"\n")
+```    
+- Further example of basic CLI interface for fetching trends implemented in main.py
